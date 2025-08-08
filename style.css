@@ -1,0 +1,499 @@
+/* ====== GRADIENT ANIMASI PROFESIONAL ====== */
+:root {
+  --primary: #6a11cb;
+  --secondary: #2575fc;
+  --accent: #ff8a00;
+  --success: #28a745;
+  --danger: #e74c3c;
+  --dark: #1a2a6c;
+  --light: #f8f9fa;
+  --gray: #6c757d;
+  --card-bg: rgba(255, 255, 255, 0.92);
+}
+
+/* Background animasi yang halus */
+body {
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--dark));
+  background-size: 400% 400%;
+  animation: gradientBG 25s ease infinite;
+  min-height: 100vh;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ====== CARD & ELEMENT EFFECTS ====== */
+/* Kartu dengan efek 3D saat hover */
+.nokos-card, .profile-card, .user-item {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(0);
+  will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
+}
+
+.nokos-card:hover, .profile-card:hover, .user-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+/* Efek gelombang pada kartu saat hover */
+.nokos-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+  pointer-events: none;
+}
+
+.nokos-card:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Efek khusus untuk country tag */
+.country-tag {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.country-tag::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 1.5s;
+}
+
+.country-tag:hover::after {
+  transform: translateX(100%);
+}
+
+/* ====== BUTTON EFFECTS ====== */
+/* Tombol dengan efek ripple saat diklik */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(106, 17, 203, 0.3);
+  border-radius: 10px;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+/* Efek khusus untuk tombol BUY */
+.nokos-buy {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.nokos-buy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s;
+}
+
+.nokos-buy:hover::before {
+  left: 100%;
+}
+
+/* ====== SIDEBAR & NAVIGATION ====== */
+/* Sidebar dengan efek glassmorphism */
+.sidebar {
+  background: rgba(26, 42, 108, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 10px 0 30px -15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+/* Efek glow pada item sidebar saat hover */
+.nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent), var(--secondary));
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+.nav-item:hover::after, .nav-item.active::after {
+  transform: scaleY(1);
+}
+
+/* Efek animasi pada logo */
+.logo h1 {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+  50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+  100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+}
+
+/* ====== CHAT EFFECTS ====== */
+/* Efek typing pada chat */
+.message {
+  position: relative;
+}
+
+.message::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.buyer-message::after {
+  background: #2196F3;
+}
+
+.dev-message::after {
+  background: white;
+}
+
+.message.typing::after {
+  opacity: 1;
+  animation: dotPulse 1.5s infinite;
+}
+
+@keyframes dotPulse {
+  0% { opacity: 0.2; }
+  20% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+/* Efek bubble chat */
+.chat-messages {
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ====== CONTAINER & PAGE EFFECTS ====== */
+/* Container dengan efek floating */
+.container {
+  animation: float 6s ease-in-out infinite;
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Page header dengan efek gradient animasi */
+.page-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: all 1.5s;
+}
+
+.page-header:hover::before {
+  left: 100%;
+}
+
+/* ====== INPUT & FORM EFFECTS ====== */
+/* Input dengan efek glow saat fokus */
+input:focus {
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.35);
+  border-color: var(--secondary);
+  animation: inputGlow 1.5s infinite;
+}
+
+@keyframes inputGlow {
+  0% { box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2); }
+  50% { box-shadow: 0 0 0 5px rgba(37, 117, 252, 0.4); }
+  100% { box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2); }
+}
+
+/* Efek label mengapung */
+.form-group {
+  position: relative;
+}
+
+.form-group input:placeholder-shown + label {
+  cursor: text;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 14px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:not(:placeholder-shown) + label,
+.form-group input:focus + label {
+  cursor: pointer;
+  top: 8px;
+  left: 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ====== SCROLLBAR CUSTOM ====== */
+/* Scrollbar khusus untuk chat */
+.chat-messages {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) transparent;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  transform: scaleX(1.2);
+}
+
+/* ====== HOVER EFFECTS KHUSUS ====== */
+/* Efek glow pada floating help button */
+.floating-help {
+  animation: floating 3s ease-in-out infinite;
+  box-shadow: 0 10px 25px -5px rgba(40, 167, 69, 0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes floating {
+  0% { transform: scale(1) translateY(0px); box-shadow: 0 10px 25px -5px rgba(40, 167, 69, 0.5); }
+  50% { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px -5px rgba(40, 167, 69, 0.7); }
+  100% { transform: scale(1) translateY(0px); box-shadow: 0 10px 25px -5px rgba(40, 167, 69, 0.5); }
+}
+
+/* Efek khusus untuk dev tab */
+.dev-tab {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.dev-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--secondary);
+  transition: width 0.3s ease;
+}
+
+.dev-tab:hover::after {
+  width: 100%;
+}
+
+.dev-tab.active::after {
+  width: 100%;
+}
+
+/* ====== RESPONSIVE EFFECTS ====== */
+@media (max-width: 768px) {
+  .nokos-card {
+    transform: translateY(0) !important;
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .floating-help {
+    right: 15px;
+    bottom: 15px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* ====== DARK MODE TRANSITION ====== */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    transition: background-color 0.3s, color 0.3s;
+  }
+}
+
+/* ====== SPECIAL EFFECTS FOR PREMIUM ====== */
+/* Badge premium dengan animasi */
+.profile-details p:last-child {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-details p:last-child::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Efek khusus untuk secret note */
+.secret-note {
+  position: relative;
+  overflow: hidden;
+}
+
+.secret-note::before {
+  content: '🔒';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 16px;
+  color: #ff9800;
+  text-shadow: 0 0 5px rgba(255, 152, 0, 0.3);
+}
+
+/* ====== TYPOGRAPHY ENHANCEMENTS ====== */
+h1, h2, h3 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ====== ERROR & SUCCESS MESSAGES ====== */
+.error, .success {
+  border-left: 4px solid;
+  transition: all 0.3s ease;
+}
+
+.error {
+  border-color: var(--danger);
+}
+
+.success {
+  border-color: var(--success);
+}
+
+.error:hover, .success:hover {
+  transform: translateX(5px);
+}
+
+/* ====== SUBTLE ANIMATIONS FOR CONTENT ====== */
+.page-content > .container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== HOVER EFFECTS FOR NAV ITEMS ====== */
+.nav-item {
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.12);
+}
